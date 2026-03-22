@@ -1,10 +1,393 @@
-<div style="background:#000;color:#E31E24;padding:60px;text-align:center;font-size:48px;font-family:sans-serif;">
-  FDFS GANG
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+.fg-page{background:#0A0A0A;color:#F5F0E8;font-family:'Barlow',sans-serif;margin:0;padding:0;}
+.fg-page *{box-sizing:border-box;margin:0;padding:0;}
+.fg-ticker{background:#E31E24;overflow:hidden;height:34px;display:flex;align-items:center;}
+.fg-ticker-inner{display:flex;gap:56px;animation:fgTick 22s linear infinite;white-space:nowrap;}
+.fg-ticker-item{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.fg-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.5);display:inline-block;}
+@keyframes fgTick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.fg-hero{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;background:#0A0A0A;}
+.fg-hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 88px,rgba(255,255,255,0.015) 88px,rgba(255,255,255,0.015) 89px);}
+.fg-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:#E31E24;}
+.fg-hero-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;width:100%;padding:60px 52px 60px 60px;gap:40px;}
+.fg-hero-left{flex:1;max-width:560px;}
+.fg-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#E31E24;display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.fg-eyebrow::before{content:'';display:inline-block;width:26px;height:1px;background:#E31E24;flex-shrink:0;}
+.fg-title{font-family:'Bebas Neue',sans-serif;font-size:100px;line-height:0.88;letter-spacing:4px;color:#F5F0E8;margin-bottom:6px;}
+.fg-title-red{color:#E31E24;display:block;}
+.fg-tagline{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#666;border-left:2px solid #E31E24;padding-left:14px;margin-bottom:36px;margin-top:14px;}
+.fg-countdown{display:flex;align-items:center;gap:0;margin-bottom:32px;background:#111;border:1px solid #222;border-left:3px solid #E31E24;padding:14px 20px;width:fit-content;}
+.fg-cd-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#E31E24;margin-right:20px;white-space:nowrap;}
+.fg-timer{display:flex;align-items:center;gap:4px;}
+.fg-unit{text-align:center;}
+.fg-num{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#F5F0E8;line-height:1;display:block;min-width:38px;}
+.fg-lbl{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#666;display:block;}
+.fg-sep{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E31E24;margin:0 2px;padding-bottom:14px;}
+.fg-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.fg-btn-primary{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;background:#E31E24;color:#fff;border:none;padding:14px 28px;cursor:pointer;border-radius:2px;text-decoration:none;display:inline-block;}
+.fg-btn-ghost{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;background:transparent;color:#F5F0E8;border:1px solid #222;padding:14px 28px;cursor:pointer;border-radius:2px;text-decoration:none;display:inline-block;}
+.fg-hero-right{flex-shrink:0;display:flex;gap:14px;align-items:flex-start;}
+.fg-prod{background:#111;border:1px solid #222;border-radius:3px;overflow:hidden;width:180px;position:relative;}
+.fg-prod:first-child{border-color:#E31E24;margin-top:-16px;}
+.fg-prod-img{height:180px;background:#0d0d0d;display:flex;align-items:center;justify-content:center;position:relative;}
+.fg-prod-img img{width:100%;height:100%;object-fit:cover;}
+.fg-prod-badge{position:absolute;top:8px;left:8px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 7px;border-radius:2px;background:#E31E24;color:#fff;}
+.fg-prod-body{padding:12px 13px 14px;}
+.fg-prod-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#E31E24;margin-bottom:3px;}
+.fg-prod-name{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F5F0E8;margin-bottom:8px;line-height:1.2;}
+.fg-prod-price{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#F5F0E8;}
+.fg-divider{height:1px;background:#222;}
+.fg-carousel{background:#0A0A0A;padding:40px 32px 52px;}
+.fg-tabs{display:flex;border-bottom:1px solid #222;margin-bottom:28px;}
+.fg-tab{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:10px 22px;cursor:pointer;color:#666;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 0.2s,border-color 0.2s;}
+.fg-tab.on{color:#F5F0E8;border-bottom:2px solid #E31E24;}
+.fg-sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;}
+.fg-sec-ey{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E31E24;margin-bottom:4px;}
+.fg-sec-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;line-height:1;color:#F5F0E8;}
+.fg-nav{display:flex;align-items:center;gap:8px;}
+.fg-dots{display:flex;gap:5px;align-items:center;margin-right:4px;}
+.fg-dot-item{width:5px;height:5px;border-radius:50%;background:#222;display:inline-block;transition:all 0.2s;}
+.fg-dot-item.on{background:#E31E24;width:16px;border-radius:3px;}
+.fg-nav-btn{width:34px;height:34px;border:1px solid #222;background:transparent;color:#F5F0E8;cursor:pointer;border-radius:2px;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background 0.15s;}
+.fg-nav-btn:hover{background:#E31E24;border-color:#E31E24;}
+.fg-track-wrap{overflow:hidden;width:100%;}
+.fg-track{display:flex;gap:14px;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);}
+.fg-card{flex:0 0 calc(25% - 11px);background:#111;border:1px solid #222;border-radius:3px;overflow:hidden;position:relative;min-width:0;}
+.fg-card:hover .fg-cimg-inner{transform:scale(1.04);}
+.fg-card-hero{border-color:#E31E24;}
+.fg-hbar{height:3px;background:#E31E24;width:100%;}
+.fg-cimg{height:196px;overflow:hidden;background:#0d0d0d;position:relative;}
+.fg-cimg-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform 0.3s ease;}
+.fg-cimg-inner img{width:100%;height:100%;object-fit:cover;}
+.fg-badge{position:absolute;top:9px;left:9px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:2px;z-index:2;}
+.fg-b-hero{background:#E31E24;color:#fff;}
+.fg-b-live{background:#E31E24;color:#fff;}
+.fg-b-pre{background:rgba(227,30,36,0.14);color:#E31E24;border:1px solid rgba(227,30,36,0.28);}
+.fg-b-soon{background:rgba(201,168,76,0.13);color:#C9A84C;border:1px solid rgba(201,168,76,0.28);}
+.fg-rel{position:absolute;bottom:9px;right:9px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:rgba(0,0,0,0.8);color:#F5F0E8;z-index:2;}
+.fg-cbody{padding:13px 14px 16px;}
+.fg-ctag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#E31E24;margin-bottom:3px;}
+.fg-ctag-gold{color:#C9A84C;}
+.fg-cname{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F5F0E8;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fg-csub{font-size:11px;color:#666;margin-bottom:11px;}
+.fg-cfoot{display:flex;align-items:center;justify-content:space-between;}
+.fg-cprice{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#F5F0E8;}
+.fg-cprice-tba{color:#333;}
+.fg-cbtn{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;border:none;}
+.fg-cbtn-buy{background:#E31E24;color:#fff;}
+.fg-cbtn-pre{background:transparent;color:#E31E24;border:1px solid rgba(227,30,36,0.35);}
+.fg-cbtn-notify{background:transparent;color:#C9A84C;border:1px solid rgba(201,168,76,0.3);}
+.fg-sold-wrap{height:2px;background:#1c1c1c;border-radius:1px;margin-top:9px;}
+.fg-sold-bar{height:2px;background:#E31E24;border-radius:1px;}
+.fg-sold-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:#666;margin-top:5px;}
+.fg-sold-lbl span{color:#E31E24;}
+.fg-features{background:#111;border-top:1px solid #222;display:flex;}
+.fg-feature{flex:1;padding:28px 24px;border-right:1px solid #222;position:relative;}
+.fg-feature:last-child{border-right:none;}
+.fg-feature:hover::before{background:#E31E24;}
+.fg-feature::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:transparent;transition:background 0.2s;}
+.fg-feature-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#1c1c1c;line-height:1;position:absolute;right:14px;top:10px;}
+.fg-feature-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#F5F0E8;margin-bottom:5px;margin-top:4px;}
+.fg-feature-desc{font-size:12px;color:#666;line-height:1.6;}
+@media(max-width:990px){.fg-hero-right{display:none;}.fg-hero-inner{padding:48px 32px;}.fg-card{flex:0 0 calc(33.333% - 10px);}.fg-features{flex-wrap:wrap;}.fg-feature{flex:0 0 50%;border-bottom:1px solid #222;}}
+@media(max-width:640px){.fg-hero-inner{padding:36px 20px;}.fg-title{font-size:72px;}.fg-card{flex:0 0 78%;}.fg-carousel{padding:28px 16px 40px;}.fg-feature{flex:0 0 100%;}}
+</style>
+
+<div class="fg-page" id="fg-{{ section.id }}">
+
+<div class="fg-ticker">
+  <div class="fg-ticker-inner">
+    <span class="fg-ticker-item">{{ section.settings.ticker_1 | default: 'Free shipping USA orders above $60' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_2 | default: 'India orders ship in 3-5 days' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_3 | default: 'Limited drops every release week' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_4 | default: 'Gang members get 48hr early access' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_1 | default: 'Free shipping USA orders above $60' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_2 | default: 'India orders ship in 3-5 days' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_3 | default: 'Limited drops every release week' }}<span class="fg-dot"></span></span>
+    <span class="fg-ticker-item">{{ section.settings.ticker_4 | default: 'Gang members get 48hr early access' }}<span class="fg-dot"></span></span>
+  </div>
 </div>
+
+<section class="fg-hero">
+  <div class="fg-hero-grid"></div>
+  <div class="fg-hero-bar"></div>
+  <div class="fg-hero-inner">
+    <div class="fg-hero-left">
+      <div class="fg-eyebrow">{{ section.settings.hero_eyebrow | default: 'Hero Drop - Apr 30 2026' }}</div>
+      <div class="fg-title">
+        {{ section.settings.hero_line1 | default: 'FDFS' }}
+        <span class="fg-title-red">{{ section.settings.hero_line2 | default: 'GANG' }}</span>
+      </div>
+      <div class="fg-tagline">{{ section.settings.hero_tagline | default: 'Born in the Theatre. Built for the Streets.' }}</div>
+      <div class="fg-countdown">
+        <div class="fg-cd-label">{{ section.settings.cd_label | default: 'Peddi releases in' }}</div>
+        <div class="fg-timer">
+          <div class="fg-unit"><span class="fg-num" id="fg-d-{{ section.id }}">39</span><span class="fg-lbl">Days</span></div>
+          <span class="fg-sep">:</span>
+          <div class="fg-unit"><span class="fg-num" id="fg-h-{{ section.id }}">00</span><span class="fg-lbl">Hrs</span></div>
+          <span class="fg-sep">:</span>
+          <div class="fg-unit"><span class="fg-num" id="fg-m-{{ section.id }}">00</span><span class="fg-lbl">Min</span></div>
+          <span class="fg-sep">:</span>
+          <div class="fg-unit"><span class="fg-num" id="fg-s-{{ section.id }}">00</span><span class="fg-lbl">Sec</span></div>
+        </div>
+      </div>
+      <div class="fg-cta">
+        <a href="{{ section.settings.btn1_link | default: '/collections/peddi' }}" class="fg-btn-primary">{{ section.settings.btn1_text | default: 'Shop Peddi Drop' }}</a>
+        <a href="{{ section.settings.btn2_link | default: '/collections/all' }}" class="fg-btn-ghost">{{ section.settings.btn2_text | default: 'All Drops' }}</a>
+      </div>
+    </div>
+    <div class="fg-hero-right">
+      <div class="fg-prod">
+        <div class="fg-prod-img">
+          <span class="fg-prod-badge">Hero Drop</span>
+          {% if section.settings.prod1_img != blank %}
+            <img src="{{ section.settings.prod1_img | image_url: width: 400 }}" alt="{{ section.settings.prod1_name | default: 'Peddi Tee' }}">
+          {% else %}
+            <svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0f0000" stroke="#E31E24" stroke-width="1.8"/><text x="55" y="72" font-family="serif" font-size="14" fill="#E31E24" text-anchor="middle">PEDDI</text><text x="55" y="90" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">RAM CHARAN</text></svg>
+          {% endif %}
+        </div>
+        <div class="fg-prod-body">
+          <div class="fg-prod-tag">Telugu - Apr 30</div>
+          <div class="fg-prod-name">{{ section.settings.prod1_name | default: 'Peddi Gang Tee' }}</div>
+          <div class="fg-prod-price">${{ section.settings.prod1_price | default: '32' }}</div>
+        </div>
+      </div>
+      <div class="fg-prod">
+        <div class="fg-prod-img">
+          {% if section.settings.prod2_img != blank %}
+            <img src="{{ section.settings.prod2_img | image_url: width: 400 }}" alt="{{ section.settings.prod2_name | default: 'Peddi Hoodie' }}">
+          {% else %}
+            <svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/><text x="55" y="72" font-family="serif" font-size="12" fill="#E31E24" text-anchor="middle">PEDDI</text><text x="55" y="88" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">HOODIE</text></svg>
+          {% endif %}
+        </div>
+        <div class="fg-prod-body">
+          <div class="fg-prod-tag">Telugu - Apr 30</div>
+          <div class="fg-prod-name">{{ section.settings.prod2_name | default: 'Peddi Hoodie' }}</div>
+          <div class="fg-prod-price">${{ section.settings.prod2_price | default: '55' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fg-divider"></div>
+
+<div class="fg-carousel">
+  <div class="fg-tabs">
+    <button class="fg-tab on" data-fg-panel="upcoming">Upcoming Drops</button>
+    <button class="fg-tab" data-fg-panel="trending">Trending Sells</button>
+  </div>
+
+  <div class="fg-panel" data-fg-pid="upcoming">
+    <div class="fg-sec-head">
+      <div><div class="fg-sec-ey">Telugu &amp; Tamil - 2026</div><div class="fg-sec-title">Upcoming Movie Drops</div></div>
+      <div class="fg-nav"><div class="fg-dots" data-fg-dots="upcoming"></div><button class="fg-nav-btn" data-fg-car="upcoming" data-fg-dir="-1">&#8592;</button><button class="fg-nav-btn" data-fg-car="upcoming" data-fg-dir="1">&#8594;</button></div>
+    </div>
+    <div class="fg-track-wrap"><div class="fg-track" data-fg-track="upcoming">
+
+      <div class="fg-card fg-card-hero">
+        <div class="fg-hbar"></div>
+        <div class="fg-cimg"><span class="fg-badge fg-b-hero">Hero Drop</span><span class="fg-rel">Apr 30, 2026</span>
+          <div class="fg-cimg-inner">
+            {% if section.settings.peddi_img != blank %}<img src="{{ section.settings.peddi_img | image_url: width: 400 }}" alt="Peddi">
+            {% else %}<svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0f0000" stroke="#E31E24" stroke-width="1.8"/><text x="55" y="72" font-family="serif" font-size="14" fill="#E31E24" text-anchor="middle">PEDDI</text><text x="55" y="90" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">RAM CHARAN</text></svg>{% endif %}
+          </div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag">Ram Charan - Telugu</div><div class="fg-cname">Peddi - Gang Drop</div><div class="fg-csub">Rural sports drama - AR Rahman</div>
+          <div class="fg-cfoot"><div class="fg-cprice">${{ section.settings.peddi_price | default: '32' }}</div><a href="{{ section.settings.peddi_link | default: '/collections/peddi' }}" class="fg-cbtn fg-cbtn-pre">Pre-Order</a></div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-soon">Coming Soon</span><span class="fg-rel">Jun 12, 2026</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="5 3"/><text x="55" y="74" font-family="serif" font-size="12" fill="#C9A84C" text-anchor="middle">JAILER 2</text><text x="55" y="92" font-family="serif" font-size="8" fill="#7a6030" text-anchor="middle">RAJINIKANTH</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag fg-ctag-gold">Rajinikanth - Tamil</div><div class="fg-cname">Jailer 2 - Thalaivar Tee</div><div class="fg-csub">Mass action sequel</div>
+          <div class="fg-cfoot"><div class="fg-cprice fg-cprice-tba">TBA</div><a href="/collections/jailer-2" class="fg-cbtn fg-cbtn-notify">Notify Me</a></div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-soon">Coming Soon</span><span class="fg-rel">Jun 22, 2026</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/><text x="55" y="70" font-family="serif" font-size="9" fill="#555" text-anchor="middle">JANA NAYAGAN</text><text x="55" y="88" font-family="serif" font-size="8" fill="#333" text-anchor="middle">VIJAY</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag fg-ctag-gold">Vijay - Tamil</div><div class="fg-cname">Jana Nayagan Hoodie</div><div class="fg-csub">Vijay farewell film</div>
+          <div class="fg-cfoot"><div class="fg-cprice fg-cprice-tba">TBA</div><a href="/collections/jana-nayagan" class="fg-cbtn fg-cbtn-notify">Notify Me</a></div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-soon">Coming Soon</span><span class="fg-rel">Jun 25, 2026</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/><text x="55" y="74" font-family="serif" font-size="10" fill="#555" text-anchor="middle">NTR NEEL</text><text x="55" y="92" font-family="serif" font-size="8" fill="#333" text-anchor="middle">JR NTR</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag fg-ctag-gold">Jr NTR - Telugu</div><div class="fg-cname">NTR - Neel Tee</div><div class="fg-csub">Mass action - Post RRR</div>
+          <div class="fg-cfoot"><div class="fg-cprice fg-cprice-tba">TBA</div><a href="/collections/ntr-neel" class="fg-cbtn fg-cbtn-notify">Notify Me</a></div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-soon">Coming Soon</span><span class="fg-rel">Jul 2026</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/><text x="55" y="74" font-family="serif" font-size="10" fill="#555" text-anchor="middle">SURIYA 46</text><text x="55" y="92" font-family="serif" font-size="8" fill="#333" text-anchor="middle">SURIYA</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag fg-ctag-gold">Suriya - Tamil</div><div class="fg-cname">Suriya 46 Drop</div><div class="fg-csub">Summer 2026</div>
+          <div class="fg-cfoot"><div class="fg-cprice fg-cprice-tba">TBA</div><a href="/collections/suriya-46" class="fg-cbtn fg-cbtn-notify">Notify Me</a></div>
+        </div>
+      </div>
+
+    </div></div>
+  </div>
+
+  <div class="fg-panel" data-fg-pid="trending" style="display:none;">
+    <div class="fg-sec-head">
+      <div><div class="fg-sec-ey">Fan Favourites - All Time</div><div class="fg-sec-title">Trending Sells</div></div>
+      <div class="fg-nav"><div class="fg-dots" data-fg-dots="trending"></div><button class="fg-nav-btn" data-fg-car="trending" data-fg-dir="-1">&#8592;</button><button class="fg-nav-btn" data-fg-car="trending" data-fg-dir="1">&#8594;</button></div>
+    </div>
+    <div class="fg-track-wrap"><div class="fg-track" data-fg-track="trending">
+
+      <div class="fg-card fg-card-hero">
+        <div class="fg-hbar"></div>
+        <div class="fg-cimg"><span class="fg-badge fg-b-live">#1 Best Seller</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#140000" stroke="#E31E24" stroke-width="1.8"/><text x="55" y="72" font-family="serif" font-size="11" fill="#E31E24" text-anchor="middle">PUSHPA 2</text><text x="55" y="90" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">THE RULE</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag">Allu Arjun - Telugu</div><div class="fg-cname">Pushpa 2 Mass Hoodie</div><div class="fg-csub">Pullover - Fleece - Black/Red</div>
+          <div class="fg-cfoot"><div class="fg-cprice">$55</div><a href="/products/pushpa-2-hoodie" class="fg-cbtn fg-cbtn-buy">Add to Cart</a></div>
+          <div class="fg-sold-wrap"><div class="fg-sold-bar" style="width:89%"></div></div>
+          <div class="fg-sold-lbl"><span>712</span> sold - 11% left</div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-live">#2</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#100000" stroke="#E31E24" stroke-width="1.5"/><text x="55" y="74" font-family="serif" font-size="12" fill="#E31E24" text-anchor="middle">DEVARA</text><text x="55" y="92" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">JR NTR</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag">Jr NTR - Telugu</div><div class="fg-cname">Devara Mass Tee</div><div class="fg-csub">Oversized - 100% cotton - Black</div>
+          <div class="fg-cfoot"><div class="fg-cprice">$32</div><a href="/products/devara-tee" class="fg-cbtn fg-cbtn-buy">Add to Cart</a></div>
+          <div class="fg-sold-wrap"><div class="fg-sold-bar" style="width:74%"></div></div>
+          <div class="fg-sold-lbl"><span>528</span> sold - 26% left</div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-live">#3</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/><text x="55" y="74" font-family="serif" font-size="10" fill="#E31E24" text-anchor="middle">GANG OG CAP</text><text x="55" y="92" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">EMBROIDERED</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag">FDFS Gang - OG</div><div class="fg-cname">Gang OG Cap</div><div class="fg-csub">Embroidered - One size fits all</div>
+          <div class="fg-cfoot"><div class="fg-cprice">$28</div><a href="/products/gang-og-cap" class="fg-cbtn fg-cbtn-buy">Add to Cart</a></div>
+          <div class="fg-sold-wrap"><div class="fg-sold-bar" style="width:62%"></div></div>
+          <div class="fg-sold-lbl"><span>389</span> sold - 38% left</div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-live">#4</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/><text x="55" y="74" font-family="serif" font-size="11" fill="#E31E24" text-anchor="middle">KANGUVA</text><text x="55" y="92" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">SURIYA</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag">Suriya - Tamil</div><div class="fg-cname">Kanguva Drop Tee</div><div class="fg-csub">Regular fit - 100% cotton</div>
+          <div class="fg-cfoot"><div class="fg-cprice">$30</div><a href="/products/kanguva-tee" class="fg-cbtn fg-cbtn-buy">Add to Cart</a></div>
+          <div class="fg-sold-wrap"><div class="fg-sold-bar" style="width:51%"></div></div>
+          <div class="fg-sold-lbl"><span>274</span> sold - 49% left</div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-cimg"><span class="fg-badge fg-b-live">#5</span>
+          <div class="fg-cimg-inner"><svg width="110" height="130" viewBox="0 0 110 130" fill="none"><path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/><text x="55" y="74" font-family="serif" font-size="9" fill="#E31E24" text-anchor="middle">GAME CHANGER</text><text x="55" y="92" font-family="serif" font-size="8" fill="#882222" text-anchor="middle">RAM CHARAN</text></svg></div>
+        </div>
+        <div class="fg-cbody"><div class="fg-ctag">Ram Charan - Telugu</div><div class="fg-cname">Game Changer Tee</div><div class="fg-csub">Vintage wash - Oversized fit</div>
+          <div class="fg-cfoot"><div class="fg-cprice">$30</div><a href="/products/game-changer-tee" class="fg-cbtn fg-cbtn-buy">Add to Cart</a></div>
+          <div class="fg-sold-wrap"><div class="fg-sold-bar" style="width:38%"></div></div>
+          <div class="fg-sold-lbl"><span>198</span> sold - 62% left</div>
+        </div>
+      </div>
+
+    </div></div>
+  </div>
+</div>
+
+<div class="fg-features">
+  <div class="fg-feature"><div class="fg-feature-num">01</div><div class="fg-feature-title">Release Week Drops</div><div class="fg-feature-desc">Every major Telugu and Tamil release gets its own limited merch drop. First Day. First Show. First in style.</div></div>
+  <div class="fg-feature"><div class="fg-feature-num">02</div><div class="fg-feature-title">USA and India Shipping</div><div class="fg-feature-desc">Printed and shipped locally. USA in 5 days, India in 3-5 days. No customs delays.</div></div>
+  <div class="fg-feature"><div class="fg-feature-num">03</div><div class="fg-feature-title">Gang Early Access</div><div class="fg-feature-desc">Sign up and get 48-hour early access before every drop goes public.</div></div>
+  <div class="fg-feature"><div class="fg-feature-num">04</div><div class="fg-feature-title">Fan Made. Fan Approved.</div><div class="fg-feature-desc">Designed by fans who show up First Day First Show. Every design captures release day energy.</div></div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var sid = '{{ section.id }}';
+  var w = document.getElementById('fg-' + sid);
+  if(!w) return;
+  var S = { upcoming:{index:0,total:5}, trending:{index:0,total:5} };
+  function vis(){return window.innerWidth<=640?1:window.innerWidth<=990?3:4;}
+  function dots(id){
+    var s=S[id], max=Math.max(1,s.total-vis()+1);
+    var el=w.querySelector('[data-fg-dots="'+id+'"]');
+    if(!el)return; el.innerHTML='';
+    for(var i=0;i<max;i++){var d=document.createElement('span');d.className='fg-dot-item'+(i===s.index?' on':'');el.appendChild(d);}
+  }
+  function move(id,dir){
+    var s=S[id],max=Math.max(0,s.total-vis());
+    s.index=Math.max(0,Math.min(s.index+parseInt(dir),max));
+    var t=w.querySelector('[data-fg-track="'+id+'"]');
+    if(!t||!t.children[0])return;
+    t.style.transform='translateX(-'+(s.index*(t.children[0].offsetWidth+14))+'px)';
+    dots(id);
+  }
+  function tab(p){
+    w.querySelectorAll('.fg-tab').forEach(function(b){b.classList.toggle('on',b.dataset.fgPanel===p);});
+    w.querySelectorAll('.fg-panel').forEach(function(b){b.style.display=b.dataset.fgPid===p?'':'none';});
+  }
+  w.querySelectorAll('.fg-tab').forEach(function(b){b.addEventListener('click',function(){tab(this.dataset.fgPanel);});});
+  w.querySelectorAll('.fg-nav-btn').forEach(function(b){b.addEventListener('click',function(){move(this.dataset.fgCar,this.dataset.fgDir);});});
+  window.addEventListener('resize',function(){dots('upcoming');dots('trending');});
+  dots('upcoming'); dots('trending');
+  var end=new Date('2026-04-30T00:00:00').getTime();
+  function tick(){
+    var diff=Math.max(0,end-Date.now());
+    var d=document.getElementById('fg-d-'+sid);
+    var h=document.getElementById('fg-h-'+sid);
+    var m=document.getElementById('fg-m-'+sid);
+    var s=document.getElementById('fg-s-'+sid);
+    if(d)d.textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+    if(h)h.textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+    if(m)m.textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+    if(s)s.textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
 
 {% schema %}
 {
-  "name": "FDFS Hero",
-  "presets": [{"name": "FDFS Hero"}]
+  "name": "FDFS Hero Carousel",
+  "settings": [
+    {"type":"text","id":"ticker_1","label":"Ticker 1","default":"Free shipping USA orders above $60"},
+    {"type":"text","id":"ticker_2","label":"Ticker 2","default":"India orders ship in 3-5 days"},
+    {"type":"text","id":"ticker_3","label":"Ticker 3","default":"Limited drops every release week"},
+    {"type":"text","id":"ticker_4","label":"Ticker 4","default":"Gang members get 48hr early access"},
+    {"type":"text","id":"hero_eyebrow","label":"Hero Eyebrow","default":"Hero Drop - Apr 30 2026"},
+    {"type":"text","id":"hero_line1","label":"Title Line 1","default":"FDFS"},
+    {"type":"text","id":"hero_line2","label":"Title Line 2 (Red)","default":"GANG"},
+    {"type":"text","id":"hero_tagline","label":"Tagline","default":"Born in the Theatre. Built for the Streets."},
+    {"type":"text","id":"cd_label","label":"Countdown Label","default":"Peddi releases in"},
+    {"type":"text","id":"btn1_text","label":"Button 1 Text","default":"Shop Peddi Drop"},
+    {"type":"url","id":"btn1_link","label":"Button 1 Link"},
+    {"type":"text","id":"btn2_text","label":"Button 2 Text","default":"All Drops"},
+    {"type":"url","id":"btn2_link","label":"Button 2 Link"},
+    {"type":"image_picker","id":"prod1_img","label":"Hero Product 1 Image"},
+    {"type":"text","id":"prod1_name","label":"Product 1 Name","default":"Peddi Gang Tee"},
+    {"type":"text","id":"prod1_price","label":"Product 1 Price","default":"32"},
+    {"type":"image_picker","id":"prod2_img","label":"Hero Product 2 Image"},
+    {"type":"text","id":"prod2_name","label":"Product 2 Name","default":"Peddi Hoodie"},
+    {"type":"text","id":"prod2_price","label":"Product 2 Price","default":"55"},
+    {"type":"image_picker","id":"peddi_img","label":"Peddi Carousel Image"},
+    {"type":"text","id":"peddi_price","label":"Peddi Price","default":"32"},
+    {"type":"url","id":"peddi_link","label":"Peddi Link"}
+  ],
+  "presets": [{"name":"FDFS Hero Carousel"}]
 }
 {% endschema %}
