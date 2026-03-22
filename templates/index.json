@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "fdfs-hero-carousel": {
+      "type": "fdfs-gang-hero-carousel",
+      "settings": {}
+    }
+  },
+  "order": ["fdfs-hero-carousel"]
+}
