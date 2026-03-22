@@ -1,1 +1,41 @@
-{"current":{}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "fdfshero": {
+        "type": "fdfshero",
+        "settings": {
+          "ticker_1": "Free shipping USA orders above $60",
+          "ticker_2": "India orders ship in 3-5 days",
+          "ticker_3": "Limited drops every release week",
+          "ticker_4": "Gang members get 48hr early access",
+          "hero_eyebrow": "Hero Drop - Apr 30 2026",
+          "hero_line1": "FDFS",
+          "hero_line2": "GANG",
+          "hero_tagline": "Born in the Theatre. Built for the Streets.",
+          "cd_label": "Peddi releases in",
+          "btn1_text": "Shop Peddi Drop",
+          "btn1_link": "",
+          "btn2_text": "All Drops",
+          "btn2_link": "",
+          "prod1_img": "shopify://shop_images/et00439772-usfbnptffh-landscape_jpg.avif",
+          "prod1_name": "Peddi Gang Tee",
+          "prod1_price": "32",
+          "prod2_name": "Peddi Hoodie",
+          "prod2_price": "55",
+          "peddi_price": "32",
+          "peddi_link": ""
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

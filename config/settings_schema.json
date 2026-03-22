@@ -1,1 +1,10 @@
-[{"name":"theme_info","theme_name":"FDFS Gang","theme_version":"1.0.0","theme_author":"FDFS","theme_documentation_url":"https://fdfsgang.com","theme_support_url":"https://fdfsgang.com"}]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "FDFS Gang",
+    "theme_version": "1.0.0",
+    "theme_author": "FDFS",
+    "theme_documentation_url": "https://fdfsgang.com",
+    "theme_support_url": "https://fdfsgang.com"
+  }
+]
