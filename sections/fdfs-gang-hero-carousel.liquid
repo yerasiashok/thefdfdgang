@@ -1,0 +1,1567 @@
+{% comment %}
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║   FDFS GANG — Hero + Dual Carousel                              ║
+  ║   File: sections/fdfs-gang-hero-carousel.liquid                 ║
+  ║                                                                  ║
+  ║   INSTALL INSTRUCTIONS:                                          ║
+  ║   1. Shopify Admin → Online Store → Themes → Edit Code          ║
+  ║   2. Sections folder → "Add a new section"                      ║
+  ║   3. Name it: fdfs-gang-hero-carousel                           ║
+  ║   4. Delete default code, paste this entire file → Save         ║
+  ║   5. Customize → Homepage → Add Section → FDFS Gang Hero        ║
+  ║   6. Drag to top of page                                         ║
+  ╚══════════════════════════════════════════════════════════════════╝
+{% endcomment %}
+
+{%- comment -%} ══════════ GOOGLE FONTS ══════════ {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+
+{%- comment -%} ══════════ STYLES ══════════ {%- endcomment -%}
+<style>
+  :root {
+    --fdfs-red:        {{ section.settings.accent_color | default: '#E31E24' }};
+    --fdfs-red-dim:    rgba(227,30,36,0.14);
+    --fdfs-red-border: rgba(227,30,36,0.28);
+    --fdfs-gold:       #C9A84C;
+    --fdfs-gold-dim:   rgba(201,168,76,0.13);
+    --fdfs-gold-bdr:   rgba(201,168,76,0.28);
+    --fdfs-bg:         {{ section.settings.bg_color | default: '#0A0A0A' }};
+    --fdfs-bg2:        #111111;
+    --fdfs-bg3:        #181818;
+    --fdfs-white:      {{ section.settings.text_color | default: '#F5F0E8' }};
+    --fdfs-gray:       #666666;
+    --fdfs-border:     #222222;
+  }
+
+  .fdfs-page {
+    background: var(--fdfs-bg);
+    color:      var(--fdfs-white);
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .fdfs-page * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ─────────────────────────────────────
+     ANNOUNCEMENT TICKER
+  ───────────────────────────────────── */
+  .fdfs-ticker {
+    background: var(--fdfs-red);
+    overflow: hidden;
+    height: 34px;
+    display: flex;
+    align-items: center;
+  }
+
+  .fdfs-ticker-inner {
+    display: flex;
+    gap: 56px;
+    animation: fdfsTicker 22s linear infinite;
+    white-space: nowrap;
+  }
+
+  .fdfs-ticker-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .fdfs-ticker-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  @keyframes fdfsTicker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─────────────────────────────────────
+     HERO
+  ───────────────────────────────────── */
+  .fdfs-hero {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--fdfs-bg);
+  }
+
+  .fdfs-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 88px,
+        rgba(255,255,255,0.018) 88px,
+        rgba(255,255,255,0.018) 89px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 88px,
+        rgba(255,255,255,0.010) 88px,
+        rgba(255,255,255,0.010) 89px
+      );
+    pointer-events: none;
+  }
+
+  .fdfs-hero-accent {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--fdfs-red);
+  }
+
+  .fdfs-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 60px 52px 60px 60px;
+    gap: 40px;
+  }
+
+  .fdfs-hero-left { flex: 1; max-width: 560px; }
+
+  .fdfs-hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--fdfs-red);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .fdfs-hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 26px;
+    height: 1px;
+    background: var(--fdfs-red);
+    flex-shrink: 0;
+  }
+
+  .fdfs-hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 108px);
+    line-height: 0.88;
+    letter-spacing: 4px;
+    color: var(--fdfs-white);
+    margin-bottom: 6px;
+  }
+
+  .fdfs-hero-title-red {
+    color: var(--fdfs-red);
+    display: block;
+  }
+
+  .fdfs-hero-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fdfs-gray);
+    border-left: 2px solid var(--fdfs-red);
+    padding-left: 14px;
+    margin-bottom: 36px;
+    margin-top: 14px;
+  }
+
+  .fdfs-hero-countdown {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+    background: var(--fdfs-bg2);
+    border: 1px solid var(--fdfs-border);
+    border-left: 3px solid var(--fdfs-red);
+    padding: 14px 20px;
+    width: fit-content;
+  }
+
+  .fdfs-hero-countdown-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fdfs-red);
+    margin-right: 20px;
+    white-space: nowrap;
+  }
+
+  .fdfs-timer-units {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .fdfs-timer-unit { text-align: center; }
+
+  .fdfs-timer-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--fdfs-white);
+    line-height: 1;
+    display: block;
+    min-width: 38px;
+  }
+
+  .fdfs-timer-lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fdfs-gray);
+    display: block;
+  }
+
+  .fdfs-timer-sep {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--fdfs-red);
+    margin: 0 2px;
+    padding-bottom: 14px;
+  }
+
+  .fdfs-hero-cta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .fdfs-btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: var(--fdfs-red);
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .fdfs-btn-primary:hover { opacity: 0.88; }
+
+  .fdfs-btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--fdfs-white);
+    border: 1px solid var(--fdfs-border);
+    padding: 14px 28px;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .fdfs-btn-ghost:hover {
+    border-color: var(--fdfs-white);
+  }
+
+  /* Hero right — product showcase */
+  .fdfs-hero-right {
+    flex-shrink: 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .fdfs-hero-product {
+    background: var(--fdfs-bg2);
+    border: 1px solid var(--fdfs-border);
+    border-radius: 3px;
+    overflow: hidden;
+    width: 186px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .fdfs-hero-product:first-child {
+    border-color: var(--fdfs-red);
+    margin-top: -16px;
+  }
+
+  .fdfs-hero-product:hover { border-color: var(--fdfs-red); }
+
+  .fdfs-hero-product-img {
+    height: 190px;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .fdfs-hero-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .fdfs-hero-product-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 2px;
+    background: var(--fdfs-red);
+    color: #fff;
+    z-index: 2;
+  }
+
+  .fdfs-hero-product-body { padding: 12px 13px 14px; }
+
+  .fdfs-hero-product-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fdfs-red);
+    margin-bottom: 3px;
+  }
+
+  .fdfs-hero-product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--fdfs-white);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .fdfs-hero-product-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--fdfs-white);
+  }
+
+  /* ─────────────────────────────────────
+     DIVIDER LINE
+  ───────────────────────────────────── */
+  .fdfs-divider {
+    height: 1px;
+    background: var(--fdfs-border);
+  }
+
+  /* ─────────────────────────────────────
+     CAROUSEL SECTION
+  ───────────────────────────────────── */
+  .fdfs-carousels {
+    background: var(--fdfs-bg);
+    padding: 40px 32px 52px;
+  }
+
+  /* Tabs */
+  .fdfs-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--fdfs-border);
+    margin-bottom: 28px;
+  }
+
+  .fdfs-tab {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    cursor: pointer;
+    color: var(--fdfs-gray);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .fdfs-tab.is-active {
+    color: var(--fdfs-white);
+    border-bottom: 2px solid var(--fdfs-red);
+  }
+
+  /* Section header */
+  .fdfs-sec-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .fdfs-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--fdfs-red);
+    margin-bottom: 4px;
+  }
+
+  .fdfs-sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: var(--fdfs-white);
+  }
+
+  /* Nav */
+  .fdfs-nav-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fdfs-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-right: 4px;
+  }
+
+  .fdfs-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--fdfs-border);
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .fdfs-dot.is-active {
+    background: var(--fdfs-red);
+    width: 16px;
+    border-radius: 3px;
+  }
+
+  .fdfs-nav-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--fdfs-border);
+    background: transparent;
+    color: var(--fdfs-white);
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1;
+  }
+
+  .fdfs-nav-btn:hover {
+    background: var(--fdfs-red);
+    border-color: var(--fdfs-red);
+  }
+
+  /* Track */
+  .fdfs-track-wrap { overflow: hidden; width: 100%; }
+
+  .fdfs-track {
+    display: flex;
+    gap: 14px;
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Card */
+  .fdfs-card {
+    flex: 0 0 calc(25% - 11px);
+    background: var(--fdfs-bg2);
+    border: 1px solid var(--fdfs-border);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    min-width: 0;
+  }
+
+  .fdfs-card--hero { border-color: var(--fdfs-red); }
+
+  .fdfs-card:hover .fdfs-cimg-inner { transform: scale(1.04); }
+
+  .fdfs-highlight-bar {
+    height: 3px;
+    background: var(--fdfs-red);
+    width: 100%;
+  }
+
+  .fdfs-cimg {
+    height: 196px;
+    overflow: hidden;
+    background: #0d0d0d;
+    position: relative;
+  }
+
+  .fdfs-cimg-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .fdfs-cimg-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .fdfs-badge {
+    position: absolute;
+    top: 9px; left: 9px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .fdfs-badge--hero { background: var(--fdfs-red); color: #fff; }
+  .fdfs-badge--live { background: var(--fdfs-red); color: #fff; }
+  .fdfs-badge--pre  { background: var(--fdfs-red-dim); color: var(--fdfs-red); border: 1px solid var(--fdfs-red-border); }
+  .fdfs-badge--soon { background: var(--fdfs-gold-dim); color: var(--fdfs-gold); border: 1px solid var(--fdfs-gold-bdr); }
+
+  .fdfs-rel-tag {
+    position: absolute;
+    bottom: 9px; right: 9px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(0,0,0,0.8);
+    color: var(--fdfs-white);
+    z-index: 2;
+  }
+
+  .fdfs-cbody { padding: 13px 14px 16px; }
+
+  .fdfs-ctag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fdfs-red);
+    margin-bottom: 3px;
+  }
+
+  .fdfs-ctag--gold { color: var(--fdfs-gold); }
+
+  .fdfs-cname {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--fdfs-white);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fdfs-csub {
+    font-size: 11px;
+    color: var(--fdfs-gray);
+    margin-bottom: 11px;
+  }
+
+  .fdfs-cfoot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .fdfs-cprice {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--fdfs-white);
+  }
+
+  .fdfs-cprice--tba { color: #3a3a3a; }
+
+  .fdfs-cbtn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+  }
+
+  .fdfs-cbtn--buy    { background: var(--fdfs-red); color: #fff; }
+  .fdfs-cbtn--pre    { background: transparent; color: var(--fdfs-red); border: 1px solid var(--fdfs-red-border); }
+  .fdfs-cbtn--notify { background: transparent; color: var(--fdfs-gold); border: 1px solid var(--fdfs-gold-bdr); }
+
+  .fdfs-sold-wrap {
+    height: 2px;
+    background: #1c1c1c;
+    border-radius: 1px;
+    margin-top: 9px;
+  }
+
+  .fdfs-sold-bar {
+    height: 2px;
+    background: var(--fdfs-red);
+    border-radius: 1px;
+  }
+
+  .fdfs-sold-lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: var(--fdfs-gray);
+    margin-top: 5px;
+  }
+
+  .fdfs-sold-lbl span { color: var(--fdfs-red); }
+
+  /* ─────────────────────────────────────
+     FEATURE STRIP
+  ───────────────────────────────────── */
+  .fdfs-features {
+    background: var(--fdfs-bg2);
+    border-top: 1px solid var(--fdfs-border);
+    display: flex;
+    gap: 0;
+  }
+
+  .fdfs-feature {
+    flex: 1;
+    padding: 28px 24px;
+    border-right: 1px solid var(--fdfs-border);
+    position: relative;
+  }
+
+  .fdfs-feature:last-child { border-right: none; }
+
+  .fdfs-feature::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+
+  .fdfs-feature:hover::before { background: var(--fdfs-red); }
+
+  .fdfs-feature-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: #1c1c1c;
+    line-height: 1;
+    position: absolute;
+    right: 14px; top: 10px;
+  }
+
+  .fdfs-feature-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fdfs-white);
+    margin-bottom: 5px;
+    margin-top: 4px;
+  }
+
+  .fdfs-feature-desc {
+    font-size: 12px;
+    color: var(--fdfs-gray);
+    line-height: 1.6;
+  }
+
+  /* ─────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────── */
+  @media screen and (max-width: 990px) {
+    .fdfs-hero-right { display: none; }
+    .fdfs-hero-inner { padding: 48px 32px; }
+    .fdfs-card { flex: 0 0 calc(33.333% - 10px); }
+    .fdfs-features { flex-wrap: wrap; }
+    .fdfs-feature { flex: 0 0 50%; border-bottom: 1px solid var(--fdfs-border); }
+  }
+
+  @media screen and (max-width: 640px) {
+    .fdfs-hero-inner { padding: 36px 20px; }
+    .fdfs-hero-title { font-size: 72px; }
+    .fdfs-hero-countdown { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .fdfs-hero-countdown-label { margin-right: 0; }
+    .fdfs-card { flex: 0 0 78%; }
+    .fdfs-carousels { padding: 28px 16px 40px; }
+    .fdfs-feature { flex: 0 0 100%; }
+  }
+</style>
+
+{%- comment -%} ══════════ HTML ══════════ {%- endcomment -%}
+<div class="fdfs-page" id="fdfs-main-{{ section.id }}">
+
+  {%- comment -%} ── TICKER ── {%- endcomment -%}
+  <div class="fdfs-ticker" aria-hidden="true">
+    <div class="fdfs-ticker-inner">
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_1 | default: 'Free shipping USA orders above $60' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_2 | default: 'India orders ship in 3–5 days via Qikink' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_3 | default: 'Limited drops every release week' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_4 | default: 'Gang members get 48-hr early access' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_1 | default: 'Free shipping USA orders above $60' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_2 | default: 'India orders ship in 3–5 days via Qikink' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_3 | default: 'Limited drops every release week' }}<span class="fdfs-ticker-dot"></span></span>
+      <span class="fdfs-ticker-item">{{ section.settings.ticker_4 | default: 'Gang members get 48-hr early access' }}<span class="fdfs-ticker-dot"></span></span>
+    </div>
+  </div>
+
+  {%- comment -%} ── HERO ── {%- endcomment -%}
+  <section class="fdfs-hero">
+    <div class="fdfs-hero-bg"></div>
+    <div class="fdfs-hero-accent"></div>
+
+    <div class="fdfs-hero-inner">
+
+      {%- comment -%} LEFT CONTENT {%- endcomment -%}
+      <div class="fdfs-hero-left">
+
+        <div class="fdfs-hero-eyebrow">
+          {{ section.settings.hero_eyebrow | default: 'Hero Drop · Apr 30 2026' }}
+        </div>
+
+        <div class="fdfs-hero-title">
+          {{ section.settings.hero_title_line1 | default: 'FDFS' }}
+          <span class="fdfs-hero-title-red">{{ section.settings.hero_title_line2 | default: 'GANG' }}</span>
+        </div>
+
+        <div class="fdfs-hero-tagline">
+          {{ section.settings.hero_tagline | default: 'Born in the Theatre. Built for the Streets.' }}
+        </div>
+
+        {%- comment -%} COUNTDOWN TIMER {%- endcomment -%}
+        {% if section.settings.show_countdown %}
+        <div class="fdfs-hero-countdown">
+          <div class="fdfs-hero-countdown-label">
+            {{ section.settings.countdown_label | default: 'Peddi releases in' }}
+          </div>
+          <div class="fdfs-timer-units">
+            <div class="fdfs-timer-unit">
+              <span class="fdfs-timer-num" id="fdfs-days-{{ section.id }}">39</span>
+              <span class="fdfs-timer-lbl">Days</span>
+            </div>
+            <span class="fdfs-timer-sep">:</span>
+            <div class="fdfs-timer-unit">
+              <span class="fdfs-timer-num" id="fdfs-hrs-{{ section.id }}">14</span>
+              <span class="fdfs-timer-lbl">Hrs</span>
+            </div>
+            <span class="fdfs-timer-sep">:</span>
+            <div class="fdfs-timer-unit">
+              <span class="fdfs-timer-num" id="fdfs-min-{{ section.id }}">22</span>
+              <span class="fdfs-timer-lbl">Min</span>
+            </div>
+            <span class="fdfs-timer-sep">:</span>
+            <div class="fdfs-timer-unit">
+              <span class="fdfs-timer-num" id="fdfs-sec-{{ section.id }}">00</span>
+              <span class="fdfs-timer-lbl">Sec</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="fdfs-hero-cta">
+          <a href="{{ section.settings.cta_primary_link | default: '/collections/peddi' }}"
+             class="fdfs-btn-primary">
+            {{ section.settings.cta_primary_text | default: 'Shop Peddi Drop' }}
+          </a>
+          <a href="{{ section.settings.cta_secondary_link | default: '/collections/all' }}"
+             class="fdfs-btn-ghost">
+            {{ section.settings.cta_secondary_text | default: 'All Drops' }}
+          </a>
+        </div>
+
+      </div>
+
+      {%- comment -%} RIGHT — PRODUCT SHOWCASE {%- endcomment -%}
+      <div class="fdfs-hero-right">
+
+        <div class="fdfs-hero-product">
+          <div class="fdfs-hero-product-img">
+            <span class="fdfs-hero-product-badge">Hero Drop</span>
+            {% if section.settings.hero_prod1_image != blank %}
+              <img src="{{ section.settings.hero_prod1_image | img_url: '400x400', crop: 'center' }}"
+                   alt="{{ section.settings.hero_prod1_title | default: 'Peddi Gang Tee' }}"
+                   loading="lazy">
+            {% else %}
+              <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0f0000" stroke="#E31E24" stroke-width="1.8"/>
+                <text x="55" y="72" font-family="Bebas Neue" font-size="14" fill="#E31E24" text-anchor="middle" letter-spacing="3">PEDDI</text>
+                <text x="55" y="88" font-family="Bebas Neue" font-size="8" fill="#882222" text-anchor="middle" letter-spacing="3">RAM CHARAN</text>
+                <text x="55" y="108" font-family="Bebas Neue" font-size="6" fill="#552222" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+              </svg>
+            {% endif %}
+          </div>
+          <div class="fdfs-hero-product-body">
+            <div class="fdfs-hero-product-tag">Telugu · Apr 30</div>
+            <div class="fdfs-hero-product-name">{{ section.settings.hero_prod1_title | default: 'Peddi Gang Tee' }}</div>
+            <div class="fdfs-hero-product-price">${{ section.settings.hero_prod1_price | default: '32' }}</div>
+          </div>
+        </div>
+
+        <div class="fdfs-hero-product">
+          <div class="fdfs-hero-product-img">
+            {% if section.settings.hero_prod2_image != blank %}
+              <img src="{{ section.settings.hero_prod2_image | img_url: '400x400', crop: 'center' }}"
+                   alt="{{ section.settings.hero_prod2_title | default: 'Peddi Hoodie' }}"
+                   loading="lazy">
+            {% else %}
+              <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 28Q18 10 30 8L40 20Q55 28 70 20L80 8Q92 10 100 28L120 50L100 58V118H10V58L-10 50Z" transform="translate(0,4)" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/>
+                <text x="55" y="80" font-family="Bebas Neue" font-size="12" fill="#E31E24" text-anchor="middle" letter-spacing="2">PEDDI</text>
+                <text x="55" y="95" font-family="Bebas Neue" font-size="7" fill="#882222" text-anchor="middle" letter-spacing="3">HOODIE</text>
+              </svg>
+            {% endif %}
+          </div>
+          <div class="fdfs-hero-product-body">
+            <div class="fdfs-hero-product-tag">Telugu · Apr 30</div>
+            <div class="fdfs-hero-product-name">{{ section.settings.hero_prod2_title | default: 'Peddi Hoodie' }}</div>
+            <div class="fdfs-hero-product-price">${{ section.settings.hero_prod2_price | default: '55' }}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fdfs-divider"></div>
+
+  {%- comment -%} ── CAROUSELS ── {%- endcomment -%}
+  <div class="fdfs-carousels">
+
+    <div class="fdfs-tabs">
+      <button class="fdfs-tab is-active" data-fdfs-panel="upcoming">Upcoming Drops</button>
+      <button class="fdfs-tab" data-fdfs-panel="trending">Trending Sells</button>
+    </div>
+
+    {%- comment -%} ── UPCOMING PANEL ── {%- endcomment -%}
+    <div class="fdfs-panel" data-fdfs-panel-id="upcoming">
+      <div class="fdfs-sec-head">
+        <div>
+          <div class="fdfs-eyebrow">Telugu &amp; Tamil · 2026</div>
+          <div class="fdfs-sec-title">Upcoming Movie Drops</div>
+        </div>
+        <div class="fdfs-nav-row">
+          <div class="fdfs-dots" data-fdfs-dots="upcoming"></div>
+          <button class="fdfs-nav-btn" data-fdfs-carousel="upcoming" data-fdfs-dir="-1">&#8592;</button>
+          <button class="fdfs-nav-btn" data-fdfs-carousel="upcoming" data-fdfs-dir="1">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="fdfs-track-wrap">
+        <div class="fdfs-track" data-fdfs-track="upcoming">
+
+          {%- comment -%} CARD 1 — PEDDI HERO {%- endcomment -%}
+          <div class="fdfs-card fdfs-card--hero">
+            <div class="fdfs-highlight-bar"></div>
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--hero">Hero Drop</span>
+              <span class="fdfs-rel-tag">Apr 30, 2026</span>
+              <div class="fdfs-cimg-inner">
+                {% if section.settings.peddi_image != blank %}
+                  <img src="{{ section.settings.peddi_image | img_url: '400x400', crop: 'center' }}" alt="Peddi Drop" loading="lazy">
+                {% else %}
+                  <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0f0000" stroke="#E31E24" stroke-width="1.8"/>
+                    <text x="55" y="72" font-family="Bebas Neue" font-size="14" fill="#E31E24" text-anchor="middle" letter-spacing="3">PEDDI</text>
+                    <text x="55" y="88" font-family="Bebas Neue" font-size="8" fill="#882222" text-anchor="middle" letter-spacing="3">RAM CHARAN</text>
+                    <text x="55" y="108" font-family="Bebas Neue" font-size="6" fill="#552222" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                  </svg>
+                {% endif %}
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag">Ram Charan · Telugu</div>
+              <div class="fdfs-cname">{{ section.settings.peddi_card_title | default: 'Peddi — Gang Drop' }}</div>
+              <div class="fdfs-csub">Rural sports drama · AR Rahman</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice">${{ section.settings.peddi_price | default: '32' }}</div>
+                <a href="{{ section.settings.peddi_link | default: '/collections/peddi' }}" class="fdfs-cbtn fdfs-cbtn--pre">Pre-Order</a>
+              </div>
+            </div>
+          </div>
+
+          {%- comment -%} CARD 2 — JAILER 2 {%- endcomment -%}
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--soon">Coming Soon</span>
+              <span class="fdfs-rel-tag">Jun 12, 2026</span>
+              <div class="fdfs-cimg-inner">
+                {% if section.settings.jailer_image != blank %}
+                  <img src="{{ section.settings.jailer_image | img_url: '400x400', crop: 'center' }}" alt="Jailer 2" loading="lazy">
+                {% else %}
+                  <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="5 3"/>
+                    <text x="55" y="74" font-family="Bebas Neue" font-size="12" fill="#C9A84C" text-anchor="middle" letter-spacing="2">JAILER 2</text>
+                    <text x="55" y="90" font-family="Bebas Neue" font-size="7" fill="#7a6030" text-anchor="middle" letter-spacing="3">RAJINIKANTH</text>
+                    <text x="55" y="108" font-family="Bebas Neue" font-size="6" fill="#4a3a20" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                  </svg>
+                {% endif %}
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag fdfs-ctag--gold">Rajinikanth · Tamil</div>
+              <div class="fdfs-cname">Jailer 2 — Thalaivar Tee</div>
+              <div class="fdfs-csub">Mass action sequel · Anirudh</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice fdfs-cprice--tba">TBA</div>
+                <a href="{{ section.settings.jailer_link | default: '/collections/jailer-2' }}" class="fdfs-cbtn fdfs-cbtn--notify">Notify Me</a>
+              </div>
+            </div>
+          </div>
+
+          {%- comment -%} CARD 3 — JANA NAYAGAN {%- endcomment -%}
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--soon">Coming Soon</span>
+              <span class="fdfs-rel-tag">Jun 22, 2026</span>
+              <div class="fdfs-cimg-inner">
+                {% if section.settings.jana_image != blank %}
+                  <img src="{{ section.settings.jana_image | img_url: '400x400', crop: 'center' }}" alt="Jana Nayagan" loading="lazy">
+                {% else %}
+                  <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/>
+                    <text x="55" y="70" font-family="Bebas Neue" font-size="9" fill="#555" text-anchor="middle" letter-spacing="2">JANA</text>
+                    <text x="55" y="84" font-family="Bebas Neue" font-size="9" fill="#555" text-anchor="middle" letter-spacing="2">NAYAGAN</text>
+                    <text x="55" y="100" font-family="Bebas Neue" font-size="7" fill="#333" text-anchor="middle" letter-spacing="3">THALAPATHY VIJAY</text>
+                  </svg>
+                {% endif %}
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag fdfs-ctag--gold">Vijay · Tamil</div>
+              <div class="fdfs-cname">Jana Nayagan Hoodie</div>
+              <div class="fdfs-csub">Vijay's farewell film · H. Vinoth</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice fdfs-cprice--tba">TBA</div>
+                <a href="{{ section.settings.jana_link | default: '/collections/jana-nayagan' }}" class="fdfs-cbtn fdfs-cbtn--notify">Notify Me</a>
+              </div>
+            </div>
+          </div>
+
+          {%- comment -%} CARD 4 — NTR NEEL {%- endcomment -%}
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--soon">Coming Soon</span>
+              <span class="fdfs-rel-tag">Jun 25, 2026</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/>
+                  <text x="55" y="74" font-family="Bebas Neue" font-size="10" fill="#555" text-anchor="middle" letter-spacing="2">NTR — NEEL</text>
+                  <text x="55" y="91" font-family="Bebas Neue" font-size="7" fill="#333" text-anchor="middle" letter-spacing="3">JR NTR</text>
+                  <text x="55" y="108" font-family="Bebas Neue" font-size="6" fill="#2a2a2a" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag fdfs-ctag--gold">Jr NTR · Telugu</div>
+              <div class="fdfs-cname">NTR — Neel Tee</div>
+              <div class="fdfs-csub">Mass action · Post-RRR era</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice fdfs-cprice--tba">TBA</div>
+                <a href="/collections/ntr-neel" class="fdfs-cbtn fdfs-cbtn--notify">Notify Me</a>
+              </div>
+            </div>
+          </div>
+
+          {%- comment -%} CARD 5 — SURIYA 46 {%- endcomment -%}
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--soon">Coming Soon</span>
+              <span class="fdfs-rel-tag">Jul 2026</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#555" stroke-width="1.5" stroke-dasharray="5 3"/>
+                  <text x="55" y="74" font-family="Bebas Neue" font-size="10" fill="#555" text-anchor="middle" letter-spacing="2">SURIYA 46</text>
+                  <text x="55" y="91" font-family="Bebas Neue" font-size="7" fill="#333" text-anchor="middle" letter-spacing="3">SURIYA</text>
+                  <text x="55" y="108" font-family="Bebas Neue" font-size="6" fill="#2a2a2a" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag fdfs-ctag--gold">Suriya · Tamil</div>
+              <div class="fdfs-cname">Suriya 46 Drop</div>
+              <div class="fdfs-csub">Family entertainer · Summer 2026</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice fdfs-cprice--tba">TBA</div>
+                <a href="/collections/suriya-46" class="fdfs-cbtn fdfs-cbtn--notify">Notify Me</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} ── TRENDING PANEL ── {%- endcomment -%}
+    <div class="fdfs-panel" data-fdfs-panel-id="trending" style="display:none;">
+      <div class="fdfs-sec-head">
+        <div>
+          <div class="fdfs-eyebrow">Fan Favourites · All Time</div>
+          <div class="fdfs-sec-title">Trending Sells</div>
+        </div>
+        <div class="fdfs-nav-row">
+          <div class="fdfs-dots" data-fdfs-dots="trending"></div>
+          <button class="fdfs-nav-btn" data-fdfs-carousel="trending" data-fdfs-dir="-1">&#8592;</button>
+          <button class="fdfs-nav-btn" data-fdfs-carousel="trending" data-fdfs-dir="1">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="fdfs-track-wrap">
+        <div class="fdfs-track" data-fdfs-track="trending">
+
+          <div class="fdfs-card fdfs-card--hero">
+            <div class="fdfs-highlight-bar"></div>
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--live">#1 Best Seller</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#140000" stroke="#E31E24" stroke-width="1.8"/>
+                  <text x="55" y="72" font-family="Bebas Neue" font-size="11" fill="#E31E24" text-anchor="middle" letter-spacing="2">PUSHPA 2</text>
+                  <text x="55" y="87" font-family="Bebas Neue" font-size="8" fill="#882222" text-anchor="middle" letter-spacing="2">THE RULE</text>
+                  <text x="55" y="104" font-family="Bebas Neue" font-size="6" fill="#442222" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag">Allu Arjun · Telugu</div>
+              <div class="fdfs-cname">Pushpa 2 Mass Hoodie</div>
+              <div class="fdfs-csub">Pullover · Fleece · Black/Red</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice">$55</div>
+                <a href="/products/pushpa-2-hoodie" class="fdfs-cbtn fdfs-cbtn--buy">Add to Cart</a>
+              </div>
+              <div class="fdfs-sold-wrap"><div class="fdfs-sold-bar" style="width:89%"></div></div>
+              <div class="fdfs-sold-lbl"><span>712</span> sold · 11% left</div>
+            </div>
+          </div>
+
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--live">#2</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#100000" stroke="#E31E24" stroke-width="1.5"/>
+                  <text x="55" y="74" font-family="Bebas Neue" font-size="12" fill="#E31E24" text-anchor="middle" letter-spacing="2">DEVARA</text>
+                  <text x="55" y="90" font-family="Bebas Neue" font-size="7" fill="#882222" text-anchor="middle" letter-spacing="3">JR NTR</text>
+                  <text x="55" y="106" font-family="Bebas Neue" font-size="6" fill="#442222" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag">Jr NTR · Telugu</div>
+              <div class="fdfs-cname">Devara Mass Tee</div>
+              <div class="fdfs-csub">Oversized · 100% cotton · Black</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice">$32</div>
+                <a href="/products/devara-tee" class="fdfs-cbtn fdfs-cbtn--buy">Add to Cart</a>
+              </div>
+              <div class="fdfs-sold-wrap"><div class="fdfs-sold-bar" style="width:74%"></div></div>
+              <div class="fdfs-sold-lbl"><span>528</span> sold · 26% left</div>
+            </div>
+          </div>
+
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--live">#3</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/>
+                  <text x="55" y="70" font-family="Bebas Neue" font-size="9" fill="#E31E24" text-anchor="middle" letter-spacing="2">FDFS GANG</text>
+                  <text x="55" y="84" font-family="Bebas Neue" font-size="9" fill="#E31E24" text-anchor="middle" letter-spacing="2">OG CAP</text>
+                  <text x="55" y="100" font-family="Bebas Neue" font-size="6" fill="#442222" text-anchor="middle" letter-spacing="4">EMBROIDERED</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag">FDFS Gang · OG</div>
+              <div class="fdfs-cname">Gang OG Cap</div>
+              <div class="fdfs-csub">Embroidered · One size fits all</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice">$28</div>
+                <a href="/products/gang-og-cap" class="fdfs-cbtn fdfs-cbtn--buy">Add to Cart</a>
+              </div>
+              <div class="fdfs-sold-wrap"><div class="fdfs-sold-bar" style="width:62%"></div></div>
+              <div class="fdfs-sold-lbl"><span>389</span> sold · 38% left</div>
+            </div>
+          </div>
+
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--live">#4</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/>
+                  <text x="55" y="74" font-family="Bebas Neue" font-size="11" fill="#E31E24" text-anchor="middle" letter-spacing="2">KANGUVA</text>
+                  <text x="55" y="91" font-family="Bebas Neue" font-size="7" fill="#882222" text-anchor="middle" letter-spacing="3">SURIYA</text>
+                  <text x="55" y="107" font-family="Bebas Neue" font-size="6" fill="#442222" text-anchor="middle" letter-spacing="4">FDFS GANG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag">Suriya · Tamil</div>
+              <div class="fdfs-cname">Kanguva Drop Tee</div>
+              <div class="fdfs-csub">Regular fit · 100% cotton</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice">$30</div>
+                <a href="/products/kanguva-tee" class="fdfs-cbtn fdfs-cbtn--buy">Add to Cart</a>
+              </div>
+              <div class="fdfs-sold-wrap"><div class="fdfs-sold-bar" style="width:51%"></div></div>
+              <div class="fdfs-sold-lbl"><span>274</span> sold · 49% left</div>
+            </div>
+          </div>
+
+          <div class="fdfs-card">
+            <div class="fdfs-cimg">
+              <span class="fdfs-badge fdfs-badge--live">#5</span>
+              <div class="fdfs-cimg-inner">
+                <svg width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 24L0 50l18 6v56h74V56l18-6L92 24L73 35Q55 44 37 35Z" fill="#0a0a0a" stroke="#E31E24" stroke-width="1.5"/>
+                  <text x="55" y="70" font-family="Bebas Neue" font-size="8" fill="#E31E24" text-anchor="middle" letter-spacing="2">GAME</text>
+                  <text x="55" y="84" font-family="Bebas Neue" font-size="8" fill="#E31E24" text-anchor="middle" letter-spacing="2">CHANGER</text>
+                  <text x="55" y="100" font-family="Bebas Neue" font-size="7" fill="#882222" text-anchor="middle" letter-spacing="3">RAM CHARAN</text>
+                </svg>
+              </div>
+            </div>
+            <div class="fdfs-cbody">
+              <div class="fdfs-ctag">Ram Charan · Telugu</div>
+              <div class="fdfs-cname">Game Changer Tee</div>
+              <div class="fdfs-csub">Vintage wash · Oversized fit</div>
+              <div class="fdfs-cfoot">
+                <div class="fdfs-cprice">$30</div>
+                <a href="/products/game-changer-tee" class="fdfs-cbtn fdfs-cbtn--buy">Add to Cart</a>
+              </div>
+              <div class="fdfs-sold-wrap"><div class="fdfs-sold-bar" style="width:38%"></div></div>
+              <div class="fdfs-sold-lbl"><span>198</span> sold · 62% left</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ── FEATURE STRIP ── {%- endcomment -%}
+  <div class="fdfs-features">
+    <div class="fdfs-feature">
+      <div class="fdfs-feature-num">01</div>
+      <div class="fdfs-feature-title">Release Week Drops</div>
+      <div class="fdfs-feature-desc">Every major Telugu &amp; Tamil release gets its own limited merch drop. First Day. First Show. First in style.</div>
+    </div>
+    <div class="fdfs-feature">
+      <div class="fdfs-feature-num">02</div>
+      <div class="fdfs-feature-title">USA &amp; India Shipping</div>
+      <div class="fdfs-feature-desc">Printed and shipped locally — USA in 5 days, India in 3–5 days. No customs delays.</div>
+    </div>
+    <div class="fdfs-feature">
+      <div class="fdfs-feature-num">03</div>
+      <div class="fdfs-feature-title">Gang Early Access</div>
+      <div class="fdfs-feature-desc">Sign up and get 48-hour early access before every drop goes public. Gang always gets in first.</div>
+    </div>
+    <div class="fdfs-feature">
+      <div class="fdfs-feature-num">04</div>
+      <div class="fdfs-feature-title">Fan Made. Fan Approved.</div>
+      <div class="fdfs-feature-desc">Designed by fans who show up First Day First Show. Every design captures the energy of release day.</div>
+    </div>
+  </div>
+
+</div>
+
+{%- comment -%} ══════════ JAVASCRIPT ══════════ {%- endcomment -%}
+<script>
+(function() {
+  var sid     = {{ section.id | json }};
+  var wrapper = document.getElementById('fdfs-main-' + sid);
+  if (!wrapper) return;
+
+  var state = {
+    upcoming: { index: 0, total: 5 },
+    trending:  { index: 0, total: 5 }
+  };
+
+  function getVisible() {
+    var w = window.innerWidth;
+    if (w <= 640)  return 1;
+    if (w <= 990)  return 3;
+    return 4;
+  }
+
+  function buildDots(id) {
+    var s   = state[id];
+    var max = Math.max(1, s.total - getVisible() + 1);
+    var wrap = wrapper.querySelector('[data-fdfs-dots="' + id + '"]');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    for (var i = 0; i < max; i++) {
+      var d = document.createElement('span');
+      d.className = 'fdfs-dot' + (i === s.index ? ' is-active' : '');
+      wrap.appendChild(d);
+    }
+  }
+
+  function doSlide(id, dir) {
+    var s   = state[id];
+    var max = Math.max(0, s.total - getVisible());
+    s.index = Math.max(0, Math.min(s.index + parseInt(dir, 10), max));
+    var track = wrapper.querySelector('[data-fdfs-track="' + id + '"]');
+    if (!track || !track.children[0]) return;
+    var gap   = 14;
+    var cardW = track.children[0].offsetWidth + gap;
+    track.style.transform = 'translateX(-' + (s.index * cardW) + 'px)';
+    buildDots(id);
+  }
+
+  function switchTab(panel) {
+    wrapper.querySelectorAll('.fdfs-tab').forEach(function(t) {
+      t.classList.toggle('is-active', t.dataset.fdfsPanel === panel);
+    });
+    wrapper.querySelectorAll('.fdfs-panel').forEach(function(p) {
+      p.style.display = p.dataset.fdfsPanelId === panel ? '' : 'none';
+    });
+  }
+
+  wrapper.querySelectorAll('.fdfs-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() { switchTab(this.dataset.fdfsPanel); });
+  });
+
+  wrapper.querySelectorAll('.fdfs-nav-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      doSlide(this.dataset.fdfsCarousel, this.dataset.fdfsDir);
+    });
+  });
+
+  window.addEventListener('resize', function() {
+    buildDots('upcoming');
+    buildDots('trending');
+  });
+
+  buildDots('upcoming');
+  buildDots('trending');
+
+  {%- comment -%} ── COUNTDOWN TIMER ── {%- endcomment -%}
+  {% if section.settings.show_countdown %}
+  var countdownTarget = new Date('{{ section.settings.countdown_date | default: '2026-04-30T00:00:00' }}').getTime();
+
+  function updateCountdown() {
+    var now  = Date.now();
+    var diff = Math.max(0, countdownTarget - now);
+
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000)  / 60000);
+    var s = Math.floor((diff % 60000)    / 1000);
+
+    var dEl = document.getElementById('fdfs-days-' + sid);
+    var hEl = document.getElementById('fdfs-hrs-'  + sid);
+    var mEl = document.getElementById('fdfs-min-'  + sid);
+    var sEl = document.getElementById('fdfs-sec-'  + sid);
+
+    if (dEl) dEl.textContent = String(d).padStart(2, '0');
+    if (hEl) hEl.textContent = String(h).padStart(2, '0');
+    if (mEl) mEl.textContent = String(m).padStart(2, '0');
+    if (sEl) sEl.textContent = String(s).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  {% endif %}
+
+})();
+</script>
+
+{%- comment -%} ══════════ SCHEMA ══════════ {%- endcomment -%}
+{% schema %}
+{
+  "name": "FDFS Gang — Hero + Carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (Red)",
+      "default": "#E31E24"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#F5F0E8"
+    },
+    {
+      "type": "header",
+      "content": "Announcement Ticker"
+    },
+    {
+      "type": "text",
+      "id": "ticker_1",
+      "label": "Ticker Message 1",
+      "default": "Free shipping USA orders above $60"
+    },
+    {
+      "type": "text",
+      "id": "ticker_2",
+      "label": "Ticker Message 2",
+      "default": "India orders ship in 3–5 days via Qikink"
+    },
+    {
+      "type": "text",
+      "id": "ticker_3",
+      "label": "Ticker Message 3",
+      "default": "Limited drops every release week"
+    },
+    {
+      "type": "text",
+      "id": "ticker_4",
+      "label": "Ticker Message 4",
+      "default": "Gang members get 48-hr early access"
+    },
+    {
+      "type": "header",
+      "content": "Hero Text"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Hero Drop · Apr 30 2026"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_line1",
+      "label": "Title Line 1 (white)",
+      "default": "FDFS"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_line2",
+      "label": "Title Line 2 (red)",
+      "default": "GANG"
+    },
+    {
+      "type": "text",
+      "id": "hero_tagline",
+      "label": "Tagline",
+      "default": "Born in the Theatre. Built for the Streets."
+    },
+    {
+      "type": "header",
+      "content": "Countdown Timer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Show Countdown Timer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Countdown Label",
+      "default": "Peddi releases in"
+    },
+    {
+      "type": "text",
+      "id": "countdown_date",
+      "label": "Target Date (YYYY-MM-DDTHH:MM:SS)",
+      "default": "2026-04-30T00:00:00",
+      "info": "Format: 2026-04-30T00:00:00"
+    },
+    {
+      "type": "header",
+      "content": "Hero Buttons"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_text",
+      "label": "Primary Button Text",
+      "default": "Shop Peddi Drop"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_text",
+      "label": "Secondary Button Text",
+      "default": "All Drops"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Hero Product Cards"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_prod1_image",
+      "label": "Product 1 Image (Tee)"
+    },
+    {
+      "type": "text",
+      "id": "hero_prod1_title",
+      "label": "Product 1 Title",
+      "default": "Peddi Gang Tee"
+    },
+    {
+      "type": "text",
+      "id": "hero_prod1_price",
+      "label": "Product 1 Price",
+      "default": "32"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_prod2_image",
+      "label": "Product 2 Image (Hoodie)"
+    },
+    {
+      "type": "text",
+      "id": "hero_prod2_title",
+      "label": "Product 2 Title",
+      "default": "Peddi Hoodie"
+    },
+    {
+      "type": "text",
+      "id": "hero_prod2_price",
+      "label": "Product 2 Price",
+      "default": "55"
+    },
+    {
+      "type": "header",
+      "content": "Peddi Drop Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "peddi_image",
+      "label": "Peddi Carousel Image"
+    },
+    {
+      "type": "text",
+      "id": "peddi_card_title",
+      "label": "Card Title",
+      "default": "Peddi — Gang Drop"
+    },
+    {
+      "type": "text",
+      "id": "peddi_price",
+      "label": "Price",
+      "default": "32"
+    },
+    {
+      "type": "url",
+      "id": "peddi_link",
+      "label": "Product / Collection Link"
+    },
+    {
+      "type": "header",
+      "content": "Jailer 2 Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "jailer_image",
+      "label": "Jailer 2 Carousel Image"
+    },
+    {
+      "type": "url",
+      "id": "jailer_link",
+      "label": "Jailer 2 Link"
+    },
+    {
+      "type": "header",
+      "content": "Jana Nayagan Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "jana_image",
+      "label": "Jana Nayagan Carousel Image"
+    },
+    {
+      "type": "url",
+      "id": "jana_link",
+      "label": "Jana Nayagan Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FDFS Gang — Hero + Carousel"
+    }
+  ]
+}
+{% endschema %}
